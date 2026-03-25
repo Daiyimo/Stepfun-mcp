@@ -1,0 +1,29 @@
+{
+  "name": "Stepfun-mcp",
+  "version": "1.0.0",
+  "description": "StepFun Search MCP Server for Claude Code",
+  "main": "dist/index.js",
+  "bin": {
+    "Stepfun-mcp": "dist/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "keywords": ["mcp", "model-context-protocol", "stepfun", "claude", "ai"],
+  "author": "Daiyimo",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
