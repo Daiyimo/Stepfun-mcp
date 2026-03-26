@@ -12,7 +12,7 @@
 - 🔍 通过 StepFun API 提供强大的网络搜索功能
 - 🗂️ 支持场景化搜索分类（编程、学术、政务、商业）
 - 📦 **npm 全局安装**：`npm install -g stepfun-mcp`
-- 🔗 **Claude Code 原生集成**：通过 settings.json 配置一行 key 即可使用
+- 🔗 **Claude Code 原生集成**：通过 `~/.claude.json` 配置一行 key 即可使用
 - ⚡ 基于官方 `@modelcontextprotocol/sdk` 构建
 - ✅ 完整的参数验证和错误处理
 - 🌐 支持中英文搜索
@@ -39,9 +39,9 @@ npm link
 
 只需配置 `STEPFUN_API_KEY`，服务即可运行（`STEPFUN_API_HOST` 默认为 `https://api.stepfun.com`，可不填）。MCP 服务器支持三种配置方式：
 
-### 方式一：Claude Code Settings.json（推荐）
+### 方式一：Claude Code ~/.claude.json（推荐）
 
-编辑 `~/.claude/settings.json` 或项目根目录 `.claude/settings.local.json`：
+编辑用户级配置文件 `~/.claude.json`（Windows 下为 `C:\Users\<用户名>\.claude.json`）：
 
 ```json
 {
