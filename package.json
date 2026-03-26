@@ -4,7 +4,7 @@
   "description": "StepFun Search MCP Server for Claude Code",
   "main": "dist/index.js",
   "bin": {
-    "Stepfun-mcp": "dist/index.js"
+    "stepfun-mcp": "dist/index.js"
   },
   "type": "module",
   "scripts": {

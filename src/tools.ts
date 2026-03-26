@@ -6,17 +6,21 @@ import { StepFunAPIClient } from './client.js';
 import { TextContent } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 
+// Supported search scenario categories (matching StepFun API docs)
+const SEARCH_CATEGORIES = ['programming', 'research', 'gov', 'business'] as const;
+
 // Parameter validation schema using Zod
 const webSearchSchema = z.object({
-  query: z.string().min(1, "Query is required"),
-  num_results: z.number().int().min(1).max(50).default(10),
+  query: z.string().min(1, 'Query is required'),
+  n: z.number().int().min(1).max(20).default(10),
+  category: z.enum(SEARCH_CATEGORIES).optional(),
 });
 
 /**
  * Web search tool implementation
  */
 export async function webSearchTool(client: StepFunAPIClient, args: unknown): Promise<TextContent[]> {
-  let validated: { query: string; num_results: number };
+  let validated: { query: string; n: number; category?: typeof SEARCH_CATEGORIES[number] };
 
   try {
     validated = webSearchSchema.parse(args);
@@ -31,10 +35,15 @@ export async function webSearchTool(client: StepFunAPIClient, args: unknown): Pr
     throw error;
   }
 
-  const payload = {
+  const payload: Record<string, unknown> = {
     query: validated.query,
-    num_results: validated.num_results,
+    n: validated.n,
   };
+
+  // Only include category if explicitly provided
+  if (validated.category) {
+    payload.category = validated.category;
+  }
 
   try {
     const response = await client.post('/v1/search', payload);

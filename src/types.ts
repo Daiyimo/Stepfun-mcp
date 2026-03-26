@@ -13,7 +13,7 @@ export interface SearchResult {
 
 export interface SearchResponse {
   query: string;
-  category: string;
+  n: number;
   results: SearchResult[];
 }
 
@@ -21,3 +21,8 @@ export interface StepFunConfig {
   apiKey: string;
   apiHost: string;
 }
+
+/**
+ * Supported search scenario categories
+ */
+export type SearchCategory = 'programming' | 'research' | 'gov' | 'business';
